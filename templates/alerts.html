@@ -1,0 +1,10 @@
+{% with mensagens = get_flashed_messages(with_categories=True) %}
+  {% if mensagens%}
+    {% for categoria, mensagem in mensagens %}
+      # TODO: Alterar para as mensagens aparecerem no modo toast
+      <div class="alert {{ categoria }}">
+        {{ mensagem }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}

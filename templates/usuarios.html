@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+
+{%block head%}
+{%endblock%}
+
+{%block body%}
+        <div class="container mt-4">
+          <h1>Usuários</h1>
+          <p>Welcome to User Page!</p>
+            <hr>
+            {% for usuario in lista_usuarios %}
+            <p>{{usuario}}</p>
+            {% endfor %}
+          <button type="button" class="btn btn-primary btn-lg">"Edit User"</button>
+        </div>
+{%endblock%}
