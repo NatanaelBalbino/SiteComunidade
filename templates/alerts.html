@@ -2,6 +2,7 @@
   {% if mensagens%}
     {% for categoria, mensagem in mensagens %}
       # TODO: Alterar para as mensagens aparecerem no modo toast
+      # TODO: Adicionar IDs nos campos para facilitar teste de front automatizado
       <div class="alert {{ categoria }}">
         {{ mensagem }}
       </div>
