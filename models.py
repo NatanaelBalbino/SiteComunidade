@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Usuario(database.Model):
-    id = database.Column(database.Integerm, primary_key=True)
+    id = database.Column(database.Integer, primary_key=True)
     username = database.Column(database.String, nullable=False)
     email = database.Column(database.String, nullable=False, unique=True)
     senha = database.Column(database.String, nullable=False)
@@ -13,8 +13,8 @@ class Usuario(database.Model):
 
 
 class Post(database.Model):
-    id = database.Column(database.Integerm, primary_key=True)
-    titulo = database.Colunm(database.String, nullable=True)
-    corpo = database.Colunm(database.text, nullable=True)
-    data_criacao = database.Colunm(database.DateTime, default=datetime.utcnow, nullable=True)
+    id = database.Column(database.Integer, primary_key=True)
+    titulo = database.Column(database.String, nullable=True)
+    corpo = database.Column(database.Text, nullable=True)
+    data_criacao = database.Column(database.DateTime, default=datetime.utcnow, nullable=True)
     id_usuario = database.Column(database.Integer, database.ForeignKey('usuario.id'), nullable=True)
