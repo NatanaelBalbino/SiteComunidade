@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, request, flash
 from comunidadeimpressionadora import app, database, bcrypt
 from comunidadeimpressionadora.forms import FormLogin, FormCriarConta
 from comunidadeimpressionadora.models import Usuario
-from flask_login import login_user
+from flask_login import login_user, logout_user, current_user
 
 lista_usuarios = ['Natanael', 'Samuel', 'Renato', 'Joel']
 
@@ -32,11 +32,11 @@ def login():
         if usuario and bcrypt.check_password_hash(usuario.senha, form_login.senha.data):
             login_user(usuario, remember=form_login.lembrar_dados.data)
             # fez login com sucesso
-            flash('Login Feito com sucesso', 'alert-info')
+            flash('fLogin Feito com sucesso', 'alert-info')
             # redirecionando para outra tela
             return redirect(url_for('home'))
         else:
-            flash('Falha no Login. Verifique Email e Senha', 'alert-danger')
+            flash(f'Falha no Login. Verifique Email e Senha', 'alert-danger')
     if form_criarconta.validate_on_submit() and 'botao_submit_criarconta' in request.form:
         # criptografando a senha
         senha_cript = bcrypt.generate_password_hash(form_criarconta.senha.data)
@@ -51,3 +51,20 @@ def login():
         # redirecionando para outra tela
         return redirect(url_for('home'))
     return render_template("login.html", form_login=form_login, form_criarconta=form_criarconta)
+
+
+@app.route("/sair")
+def sair():
+    logout_user()
+    flash(f'Logout realizado com Sucesso', 'alert-success')
+    return redirect(url_for('home'))
+
+
+@app.route("/perfil")
+def perfil():
+    return render_template("perfil.html")
+
+
+@app.route("/post/criar")
+def criar_post():
+    return render_template("criarpost.html")
