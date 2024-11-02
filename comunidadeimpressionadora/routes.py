@@ -34,8 +34,13 @@ def login():
             login_user(usuario, remember=form_login.lembrar_dados.data)
             # fez login com sucesso
             flash('fLogin Feito com sucesso', 'alert-info')
-            # redirecionando para outra tela
-            return redirect(url_for('home'))
+            # analisando se existe o parametro next ma url
+            param_next = request.args.get('next')
+            if param_next:
+                return redirect(url_for('next'))
+            else:
+                # redirecionando para outra tela
+                return redirect(url_for('home'))
         else:
             flash(f'Falha no Login. Verifique Email e Senha', 'alert-danger')
     if form_criarconta.validate_on_submit() and 'botao_submit_criarconta' in request.form:
