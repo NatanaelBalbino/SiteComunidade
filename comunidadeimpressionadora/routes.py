@@ -37,7 +37,7 @@ def login():
             # analisando se existe o parametro next ma url
             param_next = request.args.get('next')
             if param_next:
-                return redirect(url_for('next'))
+                return redirect(param_next)
             else:
                 # redirecionando para outra tela
                 return redirect(url_for('home'))
@@ -70,7 +70,8 @@ def sair():
 @app.route("/perfil")
 @login_required
 def perfil():
-    return render_template("perfil.html")
+    foto_perfil = url_for('static', filename=f'fotos_perfil/{current_user.foto_perfil}')
+    return render_template("perfil.html", foto_perfil=foto_perfil)
 
 
 @app.route("/post/criar")

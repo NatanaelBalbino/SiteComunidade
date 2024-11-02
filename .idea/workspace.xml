@@ -7,6 +7,8 @@
     <list default="true" id="3ed02e7c-c2a6-41ea-820b-4cdddf89a279" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/comunidadeimpressionadora/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/comunidadeimpressionadora/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comunidadeimpressionadora/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/comunidadeimpressionadora/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/comunidadeimpressionadora/templates/perfil.html" beforeDir="false" afterPath="$PROJECT_DIR$/comunidadeimpressionadora/templates/perfil.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +51,7 @@
       <recent name="$PROJECT_DIR$/comunidadeimpressionadora/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/comunidadeimpressionadora/static/fotos_perfil" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/comunidadeimpressionadora" />
       <recent name="$PROJECT_DIR$/comunidadeimpressionadora/templates" />
