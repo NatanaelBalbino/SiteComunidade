@@ -33,7 +33,7 @@ def login():
         if usuario and bcrypt.check_password_hash(usuario.senha, form_login.senha.data):
             login_user(usuario, remember=form_login.lembrar_dados.data)
             # fez login com sucesso
-            flash('fLogin Feito com sucesso', 'alert-info')
+            flash(f'Login Feito com sucesso', 'alert-info')
             # analisando se existe o parametro next ma url
             param_next = request.args.get('next')
             if param_next:
@@ -80,7 +80,7 @@ def editar_perfil():
     form = FormEditarPerfil()
     foto_perfil = url_for('static', filename=f'fotos_perfil/{current_user.foto_perfil}')
 
-    if form.validate_on_subimit():
+    if form.validate_on_submit():
         current_user.email = form.email.data
         current_user.username = form.username.data
         database.session.commit()
