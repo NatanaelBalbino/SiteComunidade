@@ -94,16 +94,26 @@ def salvar_imagem(imagem):
     return nome_imagem
 
 
+def atualizar_cursos(form):
+    lista_cursos = []
+    for campo in form:
+        if 'curso_' in campo.name:
+            if campo.data:
+                lista_cursos.append(campo.label.text)
+    return ';'.join(lista_cursos)
+
+
 @app.route("/perfil/editar", methods=['GET', 'POST'])
 @login_required
 def editar_perfil():
     form = FormEditarPerfil()
     if form.validate_on_submit():
-        current_user.email = form.email.data
         current_user.username = form.username.data
+        current_user.email = form.email.data
         if form.foto_perfil.data:
             nome_imagem = salvar_imagem(form.foto_perfil.data)
             current_user.foto_perfil = nome_imagem
+        current_user.cursos = atualizar_cursos(form)
         database.session.commit()
         flash(f'Perfil Atualizado com Sucesso', 'alert-success')
         return redirect(url_for('perfil'))

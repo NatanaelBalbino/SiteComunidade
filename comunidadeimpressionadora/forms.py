@@ -30,10 +30,17 @@ class FormEditarPerfil(FlaskForm):
     username = StringField('Nome do Usuário', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     foto_perfil = FileField('Atualizar foto de Perfil', validators=[FileAllowed(['jpg', 'png'])])
+    curso_cavalaria = BooleanField('Curso Cavalaria')
+    curso_espada = BooleanField('Curso Espada')
+    curso_arcoeflexa = BooleanField('Curso Arco e Flecha')
+    curso_gestao = BooleanField('Curso Gestão')
+    curso_exercito = BooleanField('Curso Exército')
+    curso_medicina = BooleanField('Curso Medicina')
+    curso_exatas = BooleanField('Curso Exatas')
     botao_submit_editarperfil = SubmitField('Salvar')
 
     def validate_email(self, email):
-        if current_user != email.data:
+        if current_user.email != email.data:
             usuario = Usuario.query.filter_by(email=email.data).first()
             if usuario:
                 raise ValidationError('Já Existe Usuário com esse E-mail')

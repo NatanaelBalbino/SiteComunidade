@@ -37,8 +37,10 @@
                                 {{ form_login.senha(class="form-control") }}
                             {% endif%}
                     </div>
-                    {{ form_login.lembrar_dados.label(class="form-check-label") }}
-                    {{ form_login.lembrar_dados(class="form-check-input") }}
+                    <div class="form-group">
+                        {{ form_login.lembrar_dados.label(class="form-check-label") }}
+                        {{ form_login.lembrar_dados(class="form-check-input") }}
+                    </div>
                 </fieldset>
                 {{ form_login.botao_submit_login(class="btn btn-primary mt-2") }}
             </form>

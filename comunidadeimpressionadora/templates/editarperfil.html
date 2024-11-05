@@ -22,6 +22,7 @@
                                 {{ form.username(class="form-control") }}
                             {% endif%}
                     </div>
+                    <br>
                     <div class="form-group">
                         {{ form.email.label(class="form-control-label") }}
                             {% if form.email.errors %}
@@ -35,8 +36,9 @@
                                 {{ form.email(class="form-control") }}
                             {% endif%}
                     </div>
+                    <br>
                     <div class="form-group">
-                        {{ form.foto_perfil.label }}<br>
+                        {{ form.foto_perfil.label }}
                         {{ form.foto_perfil(class='form-control-file') }}
                         {% if form.foto_perfil.errors %}
                             {% for erro in form.foto_perfil.errors %}
@@ -44,6 +46,16 @@
                             {% endfor %}
                         {% endif %}
                     </div>
+                    <hr>
+                    <p>Cursos</p>
+                    {% for campo in form %}
+                        {% if 'curso_' in campo.name %}
+                            <div class="form-group">
+                                {{ campo(class="form-check-input") }}
+                                {{ campo.label(class="form-check-label") }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </fieldset>
                 {{ form.botao_submit_editarperfil(class="btn btn-primary mt-2") }}
             </form>
