@@ -3,6 +3,9 @@ from comunidadeimpressionadora import app, database, bcrypt
 from comunidadeimpressionadora.forms import FormLogin, FormCriarConta, FormEditarPerfil
 from comunidadeimpressionadora.models import Usuario
 from flask_login import login_user, logout_user, current_user, login_required
+from PIL import Image
+import secrets
+import os
 
 lista_usuarios = ['Natanael', 'Samuel', 'Renato', 'Joel']
 
@@ -74,21 +77,40 @@ def perfil():
     return render_template("perfil.html", foto_perfil=foto_perfil)
 
 
+def salvar_imagem(imagem):
+    # Adicionar nome aleatório na imagem
+    codigo = secrets.token_hex(8)
+    nome, extensao = os.path.splitext(imagem.filename)
+    nome_imagem = nome + codigo + extensao
+    caminho_imagem = os.path.join(app.root_path, 'static/fotos_perfil', nome_imagem)
+
+    # Reduzir o Tamanho da Imagem
+    tamanho_imagem = (400, 400)
+    imagem_reduzida = Image.open(imagem)
+    imagem_reduzida.thumbnail(tamanho_imagem)
+
+    # Salvar a Imagem
+    imagem.save(caminho_imagem)
+    return nome_imagem
+
+
 @app.route("/perfil/editar", methods=['GET', 'POST'])
 @login_required
 def editar_perfil():
     form = FormEditarPerfil()
-    foto_perfil = url_for('static', filename=f'fotos_perfil/{current_user.foto_perfil}')
-
     if form.validate_on_submit():
         current_user.email = form.email.data
         current_user.username = form.username.data
+        if form.foto_perfil.data:
+            nome_imagem = salvar_imagem(form.foto_perfil.data)
+            current_user.foto_perfil = nome_imagem
         database.session.commit()
         flash(f'Perfil Atualizado com Sucesso', 'alert-success')
         return redirect(url_for('perfil'))
     elif request.method == 'GET':
         form.email.data = current_user.email
         form.username.data = current_user.username
+    foto_perfil = url_for('static', filename=f'fotos_perfil/{current_user.foto_perfil}')
     return render_template('editarperfil.html', foto_perfil=foto_perfil, form=form)
 
 
