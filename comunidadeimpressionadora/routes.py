@@ -7,8 +7,6 @@ from PIL import Image
 import secrets
 import os
 
-lista_usuarios = ['Natanael', 'Samuel', 'Renato', 'Joel']
-
 
 @app.route("/")  # Decorators
 def home():
@@ -23,6 +21,7 @@ def contato():
 @app.route("/usuarios")
 @login_required
 def usuarios():
+    lista_usuarios = Usuario.query.all()
     return render_template("usuarios.html", lista_usuarios=lista_usuarios)
 
 
