@@ -4,9 +4,45 @@
 {%endblock%}
 
 {%block body%}
-    <div class="grid text-center" style="--bs-rows: 3; --bs-columns: 3;">
-        <div class="container mt-4">
-          <h1>Criar Post</h1>
+<div class="container">
+    <div class="row">
+        <div class="col" style="--bs-rows: 3; --bs-columns: 3;">
+            <form method="POST" action="" class="border p-4 mt-4">
+                {{ form.csrf_token }}
+                <legend>Criar Post</legend>
+                <fieldset>
+                    <div class="form-group">
+                        {{ form.titulo.label(class="form-control-label") }}
+                            {% if form.titulo.errors %}
+                                {{ form.titulo(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.titulo.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form.titulo(class="form-control") }}
+                            {% endif%}
+                    </div>
+                    <br>                    
+                    <div class="form-group">
+                        {{ form.corpo.label(class="form-control-label") }}
+                            {% if form.corpo.errors %}
+                                {{ form.corpo(class="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for erro in form.corpo.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                                {{ form.corpo(class="form-control") }}
+                            {% endif%}
+                    </div>
+                    <br>
+                </fieldset>
+                {{ form.botao_submit_criarpost(class="btn btn-primary mt-2") }}
+            </form>
         </div>
     </div>
+</div>
 {%endblock%}
