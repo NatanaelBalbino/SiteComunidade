@@ -10,7 +10,8 @@ import os
 
 @app.route("/")  # Decorators
 def home():
-    return render_template("home.html")
+    posts = Post.query.all()
+    return render_template("home.html", posts=posts)
 
 
 @app.route("/contato")
