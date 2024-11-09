@@ -11,11 +11,25 @@
             {% for post in posts %}
             <div class="row border p-4 mt-4">
                 <div class="col-3">
-
+                    <div class="image pe-2">
+                        <img src="{{ url_for('static', filename='fotos_perfil/{}'.format(post.autor.foto_perfil)) }}" class="rounded" width="200" >
+                    </div>
                 </div>
                 <div class="col-9">
                     <h3>{{ post.titulo }}</h3>
-                    <p>{{ post.corpo }}</p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h5 class="d-inline-block">Por: {{ post.autor.username }} </h5>
+                            <h6 class="d-inline-block">
+                                | Cursos:
+                                {% for curso in post.autor.cursos.split(';') %}
+                                    <span class="badge text-bg-secondary">{{ curso }}</span>
+                                {% endfor %}
+                            </h6>
+                            <hr>
+                            <p>{{ post.corpo }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endfor %}
