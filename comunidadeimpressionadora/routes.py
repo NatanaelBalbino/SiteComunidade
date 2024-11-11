@@ -135,3 +135,8 @@ def criar_post():
         return redirect(url_for('home'))
     return render_template("criarpost.html", form=form)
 
+
+@app.route("/post/<post-id>")
+def exibir_post():
+    post = Post.query.get(post_id)
+    return render_template('post.html', post=post)
