@@ -29,7 +29,7 @@ class FormLogin(FlaskForm):
 class FormEditarPerfil(FlaskForm):
     username = StringField('Nome do Usuário', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    foto_perfil = FileField('Atualizar foto de Perfil', validators=[FileAllowed(['jpg', 'png'])])
+    foto_perfil = FileField('Atualizar foto de Perfil', validators=[FileAllowed(['jpg', 'jpeg', 'png'])])
     curso_cavalaria = BooleanField('Curso Cavalaria')
     curso_espada = BooleanField('Curso Espada')
     curso_arcoeflexa = BooleanField('Curso Arco e Flecha')

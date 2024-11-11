@@ -90,7 +90,7 @@ def salvar_imagem(imagem):
     imagem_reduzida.thumbnail(tamanho_imagem)
 
     # Salvar a Imagem
-    imagem.save(caminho_imagem)
+    imagem_reduzida.save(caminho_imagem)
     return nome_imagem
 
 
