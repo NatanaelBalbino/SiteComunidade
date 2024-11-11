@@ -10,7 +10,8 @@ import os
 
 @app.route("/")  # Decorators
 def home():
-    return render_template("home.html")
+    posts = Post.query.order_by(Post.id.desc())
+    return render_template("home.html", posts=posts)
 
 
 @app.route("/contato")
@@ -21,7 +22,7 @@ def contato():
 @app.route("/usuarios")
 @login_required
 def usuarios():
-    lista_usuarios = Usuario.query.all()
+    lista_usuarios = Usuario.query.order_by(Usuario.id)
     return render_template("usuarios.html", lista_usuarios=lista_usuarios)
 
 
@@ -136,7 +137,7 @@ def criar_post():
     return render_template("criarpost.html", form=form)
 
 
-@app.route("/post/<post-id>")
-def exibir_post():
+@app.route("/post/<post_id>")
+def exibir_post(post_id):
     post = Post.query.get(post_id)
     return render_template('post.html', post=post)
