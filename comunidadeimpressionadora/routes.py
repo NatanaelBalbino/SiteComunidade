@@ -48,7 +48,7 @@ def login():
             flash(f'Falha no Login. Verifique Email e Senha', 'alert-danger')
     if form_criarconta.validate_on_submit() and 'botao_submit_criarconta' in request.form:
         # criptografando a senha
-        senha_cript = bcrypt.generate_password_hash(form_criarconta.senha.data)
+        senha_cript = bcrypt.generate_password_hash(form_criarconta.senha.data).decode("utf-8")
         # criar usuario
         usuario = Usuario(username=form_criarconta.username.data, email=form_criarconta.email.data, senha=senha_cript)
         # criando sessão para o usuário
